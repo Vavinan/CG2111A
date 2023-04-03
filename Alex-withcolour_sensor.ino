@@ -525,37 +525,50 @@ void coloursetup() {
 }
 
 void sensecolour() {
+ // Uncomment redcol greencol and map functions after the colour calibration
+ // Comment Serial.print functions after colour calibration
   long Redfreq = 0;
   long Greenfreq = 0;
   long Bluefreq = 0;
+ // long redcol = 0;
+ // long greencol = 0;
   
   // Setting RED (R) filtered photodiodes to be read
   digitalWrite(C3,LOW);
   digitalWrite(C4,LOW);
   // Reading the output frequency
   Redfreq = pulseIn(CSOUT, LOW);
+ // redcol = map(Redfreq,a,b, 255,0);
+ Serial.print(" r = ");
+ Serial.print(Redfreq); // use the output values to find lower and higher values of red & use them in map function instead of a and b respectively
   delay(100);
 
   // Setting GREEN (G) filtered photodiodes to be read
   digitalWrite(C3,HIGH);
   digitalWrite(C4,HIGH);
   Greenfreq = pulseIn(CSOUT, LOW);
+ // greencol = map(Greenfreq, , , 255,0);
+ Serial.print(" g = ");
+ Serial.print(Greenfreq); // use the output values to find lower and higher values of green & use them in map function instead of a and b respectively
   delay(100);
 
   // Setting BLUE (B) filtered photodiodes to be read
-  digitalWrite(C3,LOW);
+/*  digitalWrite(C3,LOW);
   digitalWrite(C4,HIGH);
   Bluefreq = pulseIn(CSOUT, LOW);
-
-  if (Redfreq > Greenfreq) {
+  delay(100); */
+ 
+ //Finding the colour of the object
+ 
+ /* if (redcol > greencol) {
     colourdetected = 1;
     //leftForwardTicks = 69; //red
     } 
-  else {
+  else if (greencol > redcol){
     colourdetected = 2;
     //rightForwardTicks = 6969; //green   
   }
-    
+   */ 
 }
 
 // Stop Alex. To replace with bare-metal code later.
